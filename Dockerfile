@@ -43,6 +43,8 @@ ENV LANGUAGE fr_FR.UTF-8
 
 RUN pecl install mongodb
 
+RUN echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
+
 RUN docker-php-ext-configure mysqli && \
     docker-php-ext-install mysqli && \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd && \
