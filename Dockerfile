@@ -25,11 +25,13 @@ RUN apt-get update && \
         autoconf \
         build-essential && \
     rm -rf /var/lib/apt/lists/* && \
-    wget https://getcomposer.org/composer.phar -O /usr/local/bin/composer && \
-    chmod a+rx /usr/local/bin/composer && \
     wget https://phar.phpunit.de/phpunit-6.phar -O /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit
 
+# Composer 
+RUN set -ex; \     
+    curl -sS https://getcomposer.org/installer | php -- --version=1.10.16 --install-dir=/usr/local/bin --filename=composer; \     
+    chmod +x /usr/local/bin/composer
 
 ## ----- Set LOCALE to UTF8
 RUN apt update && apt install -y locales && \
